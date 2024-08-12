@@ -6,7 +6,7 @@ This section details how to create a Virtual Machine (VM) in Google Cloud, inclu
 
 1. **Log in to Google Cloud Console:**
    - Visit [Google Cloud Console](https://console.cloud.google.com/) and log in with your account.
-
+ 
 2. **Navigate to VM Instances:**
    - In the left-hand menu, select **Compute Engine** > **VM instances**.
    - Click **Create Instance** to start the setup process.
