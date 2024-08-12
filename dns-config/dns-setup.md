@@ -1,5 +1,4 @@
-
-# DNS Setup
+ # DNS Setup
 
 This section covers the steps to purchase a domain, set up DNS in Google Cloud, and point your domain to your VM.
 
