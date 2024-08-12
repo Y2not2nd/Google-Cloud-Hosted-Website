@@ -2,7 +2,7 @@
 
 This project documents the process of setting up a simple website hosted on a Google Cloud VM with a custom domain. 
 
-## Table of Contents
+## Table of Contents 
 
 1. [DNS Purchase and Transfer]
 2. [Google Cloud VM Creation]
