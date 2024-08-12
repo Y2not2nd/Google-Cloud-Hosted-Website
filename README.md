@@ -6,10 +6,9 @@ This project documents the process of setting up a simple website hosted on a Go
 
 1. [DNS Purchase and Transfer]
 2. [Google Cloud VM Creation]
-3. [A Record Configuration]
-4. [VM Setup and Nginx Configuration]
-5. [SSH Key Pair for Uploading Files]
-6. [Website Folder Structure]
+3. [VM Setup and Nginx Configuration]
+4. [Website Folder Structure]
+5. [Creating the Website]
    
 ---
 
@@ -31,12 +30,13 @@ This project documents the process of setting up a simple website hosted on a Go
 - Point your domain’s A record to the external IP address of the VM.
 - Verify DNS propagation using tools like DNSChecker.
 
-### 3. VM Setup and Nginx Configuration
+### 3. VM Setup and Nginx SSL Configuration
 
 - Install Nginx on the VM.
 - Configure Nginx to serve the website on your domain.
+- Obtain SSL Certification (Optional)
 
-### 4. Website Folder Structure
+### 4. Website Folder Structure 
 
 - Organize your website files into a structure like the following:
   ```plaintext
@@ -48,3 +48,8 @@ This project documents the process of setting up a simple website hosted on a Go
   │   └── script.js
   └── images/
       └── logo.png
+ ### 5. Creating Website 
+- Create the project folders
+- Copy code into Folders
+- Use SCP command to copy over images from local device
+- Test!
