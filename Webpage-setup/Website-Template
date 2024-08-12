@@ -1,0 +1,233 @@
+Here’s a step-by-step guide to creating a basic webpage using HTML, CSS, and JavaScript. This guide will help users build a simple website structure, add images, and include a header with the message "Congrats, you did it!!!!!!!". 
+
+### **1. Create the Project Folder Structure**
+
+First, create the necessary folders and files for your website:
+
+#### **Folder Structure:**
+
+```plaintext
+your-project/
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── script.js
+└── images/
+    └── (Your images go here)
+```
+
+- **`index.html`**: The main HTML file for your webpage.
+- **`css/styles.css`**: The stylesheet that defines the look and feel of your website.
+- **`js/script.js`**: The JavaScript file for adding interactivity.
+- **`images/`**: A folder to store all images used on your website.
+
+
+
+
+
+
+
+### **2. Create the HTML File (index.html)**
+
+The HTML file is the backbone of your website. It defines the structure and content.
+
+#### **index.html:**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Basic Webpage</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Congrats, you did it!!!!!!!</h1>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <section id="introduction">
+            <h2>Welcome to My Website</h2>
+            <p>This is a basic webpage created using HTML, CSS, and JavaScript.</p>
+        </section>
+
+        <!-- Image Section -->
+        <section id="images">
+            <h2>My Image Gallery</h2>
+            <img src="images/your-image1.jpg" alt="Image 1">
+            <img src="images/your-image2.jpg" alt="Image 2">
+            <!-- Add more images as needed -->
+        </section>
+
+        <!-- Interactive Section -->
+        <section id="interactive">
+            <h2>Click the Button Below!</h2>
+            <button onclick="displayMessage()">Click Me</button>
+            <p id="message"></p>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+```
+
+
+
+
+
+
+
+
+
+### **3. Create the CSS File (styles.css)**
+
+The CSS file defines the style of your webpage, including fonts, colors, and layout.
+
+#### **css/styles.css:**
+
+```css
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Header Style */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+}
+
+/* Main Content Style */
+main {
+    margin-top: 20px;
+}
+
+/* Image Gallery Style */
+#images {
+    margin-top: 20px;
+}
+
+#images img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+}
+
+/* Interactive Section Style */
+#interactive {
+    margin-top: 20px;
+}
+
+#interactive button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#interactive button:hover {
+    background-color: #218838;
+}
+
+#message {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+```
+
+
+
+
+
+
+### **4. Create the JavaScript File (script.js)**
+
+JavaScript adds interactivity to your website. In this example, it will display a message when the button is clicked.
+
+#### **js/script.js:**
+
+```javascript
+function displayMessage() {
+    document.getElementById("message").innerText = "You clicked the button! Great job!";
+}
+```
+
+#### **Explanation:**
+- **`displayMessage()` Function:** This function changes the text of the paragraph with the `id` `message` when the button is clicked.
+
+
+
+
+
+### **5. Upload Images to the Images Folder**
+
+1. **Add Your Images:**
+   - Place your image files in the `images` folder. For example, you can have `your-image1.jpg` and `your-image2.jpg` in the `images` folder.
+
+2. **Reference Images in HTML:**
+   - Ensure the `src` attribute in your `img` tags in `index.html` points to the correct image file names.
+
+
+
+
+
+
+### **6. Test Your Website Locally**
+
+1. **Open the HTML File:**
+   - Open `index.html` in your web browser to see your website in action. You should see the header, images, and the interactive button.
+
+2. **Verify the Layout and Functionality:**
+   - Ensure the styles are applied correctly, images are loading, and clicking the button displays the message.
+
+
+
+
+
+
+### **7. Deploy the Website to Your VM**
+
+1. **Ensure Your SSH Key Pair is Set Up:** 
+   - As described in the previous steps, make sure your SSH key pair is configured, and you can connect to your VM.
+
+2. **Upload Files Using `scp`:**
+   - Upload the entire project to your VM:
+     ```bash
+     scp -i ~/.ssh/id_ed25519 -r /path/to/your-project/ username@your-vm-ip:/var/www/html/
+     ```
+
+3. **Verify on the Server:**
+   - SSH into your VM and ensure the files are correctly placed in `/var/www/html/`:
+     ```bash
+     ssh -i ~/.ssh/id_ed25519 username@your-vm-ip
+     ls -l /var/www/html/
+     ```
+
+4. **Access Your Website:**
+   - Visit `http://yourdomain.com` in a web browser to see your deployed website.
+
