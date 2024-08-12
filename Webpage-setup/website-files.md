@@ -62,7 +62,7 @@ An SSH key pair consists of a public and private key. The private key stays on y
      ```
    - This command restricts access to the private key to only you.
 
-### 2. Manually Add the Public Key to Your VM
+# 2. Manually Add the Public Key to Your VM
 
 1. # Copy the Public Key to the VM: 
    - SSH into your VM using the Google Cloud Console's browser-based SSH:
@@ -87,28 +87,28 @@ An SSH key pair consists of a public and private key. The private key stays on y
      ```
    - If successful, you should be logged into your VM without needing to enter a password.
 
-### Uploading Pictures from Your Local Device to the VM
+# Uploading Pictures from Your Local Device to the VM
 
 Once your SSH key pair is set up, you can securely upload files from your local machine to your VM using the `scp` command.
 
-#### **Steps to Upload Files:**
+# Steps to Upload Files:
 
-1. **Prepare Your Files:**
+1. Prepare Your Files:
    - On your local machine, ensure that the files you want to upload are organized. For example, place all images you want to upload into a directory like `C:/Users/YourName/Documents/webapp/images/`.
 
-2. **Upload Files Using `scp`:**
+2. Upload Files Using `scp`:
    - Use the following command to upload the entire `images` directory to the VM’s `/var/www/html/images/` directory:
      ```bash
      scp -i ~/.ssh/id_ed25519 -r /c/Users/YourName/Documents/webapp/images/ username@your-vm-ip:/var/www/html/
      ```
-   - **Explanation:**
+   - Explanation:
      - `scp`: The command to securely copy files.
      - `-i ~/.ssh/id_ed25519`: Specifies the private key to use for authentication.
      - `-r`: Recursively copy entire directories.
      - `/c/Users/YourName/Documents/webapp/images/`: The path to the local directory containing your images.
      - `username@your-vm-ip:/var/www/html/`: The destination path on your VM where the files will be uploaded.
 
-3. **Verify the Upload:**
+3. Verify the Upload:
    - After the upload, SSH into your VM to verify the files were uploaded correctly:
      ```bash
      ssh -i ~/.ssh/id_ed25519 username@your-vm-ip
