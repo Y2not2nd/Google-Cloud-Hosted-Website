@@ -1,0 +1,128 @@
+### **VM Setup and Nginx Configuration**
+
+#### **1. SSH into the VM**
+
+1. **Access the VM via SSH:**
+   - After the VM was created, you accessed it via SSH from the Google Cloud Console:
+     - Go to **Compute Engine** > **VM instances**.
+     - Click on the **SSH** button next to your instance to open a terminal window directly in your browser.
+
+2. **Alternatively, SSH from Local Machine:**
+   - You could also SSH into the VM using your local terminal with the following command:
+     ```bash
+     ssh -i ~/.ssh/id_ed25519 username@your-vm-ip
+     ```
+
+#### **2. Update the Package List**
+
+1. **Update the Package Manager:**
+   - The first step was to update the package list to ensure all packages are up to date:
+     ```bash
+     sudo apt update
+     ```
+   - This command fetched the latest package information from the repositories configured on your VM.
+
+#### **3. Install Essential Software**
+
+##### **a. Install Nginx Web Server**
+
+1. **Install Nginx:**
+   - With the package list updated, you proceeded to install Nginx, which is the web server used to host your website:
+     ```bash
+     sudo apt install nginx
+     ```
+   - This command installed Nginx and any dependencies required to run the web server.
+
+2. **Start Nginx Service:**
+   - After installation, you started the Nginx service to ensure it was running:
+     ```bash
+     sudo systemctl start nginx
+     ```
+   - This command started the Nginx service, allowing it to serve web content.
+
+3. **Enable Nginx to Start on Boot:**
+   - To ensure Nginx starts automatically when the VM is rebooted, you enabled it to start on boot:
+     ```bash
+     sudo systemctl enable nginx
+     ```
+   - This command ensured that Nginx would automatically start whenever the VM was restarted.
+
+#### **4. Allow HTTP and HTTPS Traffic from Google Cloud Console Firewall**
+
+##### **a. Configuring Firewall Rules via Google Cloud Console**
+
+1. **Log in to Google Cloud Console:**
+   - Visit [Google Cloud Console](https://console.cloud.google.com/) and sign in with your Google account.
+
+2. **Navigate to the VPC Network:**
+   - From the left-hand menu, go to **VPC network** > **Firewall**.
+
+3. **Create a New Firewall Rule:**
+   - Click on **Create Firewall Rule** at the top of the Firewall page.
+
+4. **Configure the Firewall Rule:**
+   - **Name:** Enter a name for your firewall rule, such as `allow-http-https`.
+   - **Network:** Select the network where your VM is located, typically `default`.
+   - **Priority:** Set the priority (default `1000` is usually fine).
+   - **Direction of Traffic:** Choose **Ingress** (incoming traffic).
+   - **Action on Match:** Select **Allow**.
+   - **Targets:** Choose **All instances in the network** or specific instances by tag.
+   - **Source Filter:** Set this to **IP ranges**.
+   - **Source IP ranges:** Enter `0.0.0.0/0` to allow traffic from any IP address.
+   - **Protocols and Ports:** 
+     - Check **Specified protocols and ports**.
+     - Enter `tcp:80` to allow HTTP traffic and `tcp:443` to allow HTTPS traffic.
+
+5. **Review and Create the Rule:**
+   - Double-check your settings, then click **Create** to apply the firewall rule.
+
+6. **Verify and Test:**
+   - Ensure that the new rule is active and test your website by visiting `http://yourdomain.com` in a browser.
+
+#### **5. Configuring Nginx for Your Domain**
+
+1. **Edit the Default Server Block:**
+   - Open the default Nginx configuration file for editing:
+     ```bash
+     sudo nano /etc/nginx/sites-available/default
+     ```
+
+2. **Update Server Block Configuration:**
+   - Modify the server block to include your domain name:
+     ```nginx
+     server {
+         listen 80;
+         server_name yourdomain.com www.yourdomain.com;
+
+         root /var/www/html;
+         index index.html;
+
+         location / {
+             try_files $uri $uri/ =404;
+         }
+     }
+     ```
+
+3. **Test and Reload Nginx Configuration:**
+   - After editing, test the Nginx configuration to ensure there are no syntax errors:
+     ```bash
+     sudo nginx -t
+     ```
+     In Case the Test Fails:
+  
+If the nginx -t command fails and you found that the problem was not in the default file but in another Nginx configuration file.
+Solution:
+You updated the your-conf-file.conf (replace with the actual file name if needed) located in /etc/nginx/conf.d/ or another custom configuration file.
+Example of a fix might be removing or correcting misplaced directives such as the user directive:
+nginx
+# CODE 
+  
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+                                     
+After making corrections, run sudo nginx -t again to verify the configuration.
+   - If the test passed, you reloaded Nginx to apply the changes:
+     ```bash
+     sudo systemctl reload nginx
+     ```
