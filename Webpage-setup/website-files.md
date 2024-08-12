@@ -4,7 +4,6 @@ When hosting a website on your VM, it's essential to organize your files in a cl
 
 #### **Example Website Folder Structure:**
 
-
 ## Project Directory Structure
 
 ```plaintext
