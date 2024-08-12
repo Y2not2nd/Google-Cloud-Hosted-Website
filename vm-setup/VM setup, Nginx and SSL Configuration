@@ -3,7 +3,7 @@
 #### **1. SSH into the VM**
 
 1. **Access the VM via SSH:**
-   - After the VM was created, you accessed it via SSH from the Google Cloud Console:
+   - After the VM was created, you accessed it via SSH from the Google Cloud Console:  
      - Go to **Compute Engine** > **VM instances**.
      - Click on the **SSH** button next to your instance to open a terminal window directly in your browser.
 
