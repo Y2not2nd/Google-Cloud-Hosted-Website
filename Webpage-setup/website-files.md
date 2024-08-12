@@ -5,15 +5,17 @@ When hosting a website on your VM, it's essential to organize your files in a cl
 #### **Example Website Folder Structure:**
 
 
+## Project Directory Structure
+
+```plaintext
 /var/www/html/
 ├── index.html
 ├── css/
 │   └── styles.css
 ├── js/
 │   └── script.js
-├── images/
-│   └── logo.png
-```
+└── images/
+    └── logo.png
 
 #### **Explanation of Each Folder:**
 
