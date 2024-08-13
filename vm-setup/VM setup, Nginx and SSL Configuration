@@ -9,17 +9,17 @@
 
 2. **Alternatively, SSH from Local Machine:**
    - You could also SSH into the VM using your local terminal with the following command:
-     ```bash
+    
      ssh -i ~/.ssh/id_ed25519 username@your-vm-ip
-     ```
+     
 
 #### **2. Update the Package List**
 
 1. **Update the Package Manager:**
    - The first step was to update the package list to ensure all packages are up to date:
-     ```bash
+     
      sudo apt update
-     ```
+     
    - This command fetched the latest package information from the repositories configured on your VM.
 
 #### **3. Install Essential Software**
@@ -28,23 +28,23 @@
 
 1. **Install Nginx:**
    - With the package list updated, you proceeded to install Nginx, which is the web server used to host your website:
-     ```bash
+     
      sudo apt install nginx
-     ```
+     
    - This command installed Nginx and any dependencies required to run the web server.
 
 2. **Start Nginx Service:**
    - After installation, you started the Nginx service to ensure it was running:
-     ```bash
+     
      sudo systemctl start nginx
-     ```
+     
    - This command started the Nginx service, allowing it to serve web content.
 
 3. **Enable Nginx to Start on Boot:**
    - To ensure Nginx starts automatically when the VM is rebooted, you enabled it to start on boot:
-     ```bash
+     
      sudo systemctl enable nginx
-     ```
+     
    - This command ensured that Nginx would automatically start whenever the VM was restarted.
 
 #### **4. Allow HTTP and HTTPS Traffic from Google Cloud Console Firewall**
@@ -83,13 +83,14 @@
 
 1. **Edit the Default Server Block:**
    - Open the default Nginx configuration file for editing:
-     ```bash
+     
      sudo nano /etc/nginx/sites-available/default
-     ```
+   
 
 2. **Update Server Block Configuration:**
    - Modify the server block to include your domain name:
-     ```nginx
+
+     
      server {
          listen 80;
          server_name yourdomain.com www.yourdomain.com;
@@ -105,9 +106,9 @@
 
 3. **Test and Reload Nginx Configuration:**
    - After editing, test the Nginx configuration to ensure there are no syntax errors:
-     ```bash
+     
      sudo nginx -t
-     ```
+     
      In Case the Test Fails:
   
 If the nginx -t command fails and you found that the problem was not in the default file but in another Nginx configuration file.
@@ -123,6 +124,6 @@ pid /run/nginx.pid;
                                      
 After making corrections, run sudo nginx -t again to verify the configuration.
    - If the test passed, you reloaded Nginx to apply the changes:
-     ```bash
+     
      sudo systemctl reload nginx
-     ```
+    
