@@ -4,7 +4,7 @@ This project documents the process of setting up a simple website hosted on a Go
 
 ## Table of Contents 
 
-1. [DNS Purchase and Transfer]
+1. [Domain Record Setup]
 2. [Google Cloud VM Creation]
 3. [VM Setup and Nginx Configuration]
 4. [Website Folder Structure]
